@@ -1,3 +1,5 @@
+import logoImg from '../assets/logo/petID-logo.png'
+
 function Footer() {
   return (
     <footer className="bg-gray-900 text-white">
@@ -6,7 +8,7 @@ function Footer() {
           {/* Brand Section */}
           <div className="md:col-span-1">
             <div className="flex items-center mb-4">
-              <h3 className="text-2xl font-bold text-blue-400">🐾 PetID</h3>
+              <img src={logoImg} alt="PetID Logo" className="h-8 w-auto" />
             </div>
             <p className="text-gray-400 mb-4">
               A primeira plataforma descentralizada para identidade digital de pets, 

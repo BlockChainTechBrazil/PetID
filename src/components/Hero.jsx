@@ -1,3 +1,5 @@
+
+
 function Hero() {
   return (
     <section className="bg-gradient-to-r from-blue-600 to-purple-700 text-white">
