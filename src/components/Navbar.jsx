@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import logo from '../assets/logo/petID-logo.png'
+import { navItems } from '../constants'
 
 function Navbar() {
   const [isConnected, setIsConnected] = useState(false)
@@ -17,50 +19,31 @@ function Navbar() {
   }
 
   return (
-    <nav className="bg-white shadow-lg border-b border-gray-200">
+    <nav className="bg-white shadow-lg border-b border-gray-200 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <h1 className="text-2xl font-bold text-blue-600">
-                🐾 PetID
-              </h1>
-            </div>
+          <div className="flex items-center flex-shrink-0">
+            <img className="h-10 w-10 mr-2" src={logo} alt="Logo" />
+            <span className="text-xl font-bold text-blue-600 tracking-tight">PetID</span>
           </div>
 
-          {/* Navigation Links */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              <a
-                href="#home"
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
-              >
-                Início
-              </a>
-              <a
-                href="#features"
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
-              >
-                Recursos
-              </a>
-              <a
-                href="#about"
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
-              >
-                Sobre
-              </a>
-              <a
-                href="#contact"
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
-              >
-                Contato
-              </a>
-            </div>
-          </div>
+          {/* Navigation Links - Visível em todas as telas */}
+          <div className="flex items-center space-x-8">
+            <ul className="flex space-x-6">
+              {navItems.map((item, index) => (
+                <li key={index}>
+                  <a 
+                    href={item.href}
+                    className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
 
-          {/* Wallet Connection */}
-          <div className="flex items-center">
+            {/* Wallet Connection Button */}
             <button
               onClick={connectWallet}
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
@@ -70,15 +53,6 @@ function Navbar() {
               }`}
             >
               {isConnected ? '✓ Conectado' : 'Conectar Carteira'}
-            </button>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button className="text-gray-700 hover:text-blue-600 p-2">
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
             </button>
           </div>
         </div>
