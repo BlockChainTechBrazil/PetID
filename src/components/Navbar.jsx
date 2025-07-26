@@ -19,42 +19,20 @@ function Navbar() {
   }
 
   return (
-    <nav className="bg-white shadow-lg border-b border-gray-200 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+    <nav className="sticky top-0 z-50 py-3 backdrop-blur-lg border-b border-neutral-700/80">
+      <div className="container px-4 mx-auto relative lg:text-sm">
+        <div className="flex justify-between items-center">
           <div className="flex items-center flex-shrink-0">
             <img className="h-10 w-10 mr-2" src={logo} alt="Logo" />
-            <span className="text-xl font-bold text-blue-600 tracking-tight">PetID</span>
+            <span className="text-xl tracking-tight">PetID</span>
           </div>
-
-          {/* Navigation Links - Visível em todas as telas */}
-          <div className="flex items-center space-x-8">
-            <ul className="flex space-x-6">
-              {navItems.map((item, index) => (
-                <li key={index}>
-                  <a 
-                    href={item.href}
-                    className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-
-            {/* Wallet Connection Button */}
-            <button
-              onClick={connectWallet}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                isConnected
-                  ? 'bg-green-500 text-white hover:bg-green-600'
-                  : 'bg-blue-600 text-white hover:bg-blue-700'
-              }`}
-            >
-              {isConnected ? '✓ Conectado' : 'Conectar Carteira'}
-            </button>
-          </div>
+          <ul className="hidden lg:flex ml-14 space-x-12">
+            {navItems.map((item, index) => (
+              <li key={index}>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </nav>
