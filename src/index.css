@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+body {
+  background: linear-gradient(90deg, #2563eb 0%, #7c3aed 100%);
+  /* azul-600 para roxo-700 */
+  color: #fff;
+  font-family: 'Inter', 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+.bg-background\/80 {
+  background-color: rgba(37, 99, 235, 0.8) !important;
+  /* azul-600 translúcido */
+}
+
+/* Ajuste para navbar translúcida clara */
+.bg-background\/80 {
+  background-color: rgba(243, 244, 246, 0.8) !important;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #18181B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7C3AED;
+  border-radius: 8px;
+}

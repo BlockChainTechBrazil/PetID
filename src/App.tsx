@@ -10,15 +10,16 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="max-w-7xl mx-auto pt-20 px-6">
-        <Hero />
-        <WalletConnect />
-        <PetRegistration />
-        <Features />
+      <main className="min-h-screen w-full flex flex-col items-center justify-start">
+        <div className="w-full max-w-7xl pt-24 px-4 sm:px-8">
+          <Hero />
+          <WalletConnect />
+          <PetRegistration />
+          <Features />
+        </div>
         <Footer />
-      </div>
+      </main>
     </>
-    
   )
 }
 

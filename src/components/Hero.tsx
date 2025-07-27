@@ -2,8 +2,8 @@
 
 function Hero() {
   return (
-    <section className="bg-gradient-to-r from-blue-600 to-purple-700 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+    <section className="text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 pt-0">
         <div className="text-center">
           {/* Hero Title */}
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -13,7 +13,7 @@ function Hero() {
 
           {/* Hero Subtitle */}
           <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            PetID é uma plataforma descentralizada que cria identidades digitais 
+            PetID é uma plataforma descentralizada que cria identidades digitais
             únicas e seguras para animais de estimação usando blockchain
           </p>
 
@@ -26,7 +26,7 @@ function Hero() {
                 Registros protegidos por blockchain, impossíveis de falsificar
               </p>
             </div>
-            
+
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
               <div className="text-3xl mb-3">🌐</div>
               <h3 className="text-lg font-semibold mb-2">Descentralizado</h3>
@@ -34,7 +34,7 @@ function Hero() {
                 Sem dependência de autoridades centrais ou governos
               </p>
             </div>
-            
+
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
               <div className="text-3xl mb-3">🆔</div>
               <h3 className="text-lg font-semibold mb-2">ID Único</h3>
