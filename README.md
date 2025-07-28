@@ -40,6 +40,7 @@ Pet ID empowers municipalities, animal control, and shelters with actionable dat
 - 📱 Secure mobile/web UI with biometric login and decentralized IDs
 - 🗳️ Community-driven governance enabled by proof-of-authority or token voting
 
+
 ## 🚀 Key Use Cases
 
 - 🏥 **Emergency care**: Instant access to medical history at any clinic
@@ -47,6 +48,8 @@ Pet ID empowers municipalities, animal control, and shelters with actionable dat
 - ✈️ **Travel**: Validated digital documents for cross-border transport
 - 🤝 **Adoption**: Trustless ownership transfers between parties
 - 🧬 **Public health**: Sanitary and genetic control through audit-ready data
+- 💉 **Vaccination records**: All vaccine doses and dates are registered on-chain, accessible by authorized parties
+- 🩺 **Medical records**: Consultations, treatments, and exams are stored securely and permanently for each pet
 
 ## 💡 Social Impact
 
@@ -76,6 +79,47 @@ npm run dev
 ```
 
 4. Open your browser and navigate to `http://localhost:5173`
+
+
+## 🩺 Medical & Vaccine Records (Planned/Experimental)
+
+The smart contract will support:
+
+- **Vaccine Records**: Each pet will have an array of vaccine records (name, date, details)
+- **Medical Records**: Each pet will have an array of medical records (description, date, veterinarian)
+
+These will be managed by new functions in the same PetID contract, so all pet data remains unified and easy to query.
+
+**Example Solidity additions:**
+
+```solidity
+struct VaccineRecord {
+    string name;
+    uint256 date;
+    string details;
+}
+
+struct MedicalRecord {
+    string description;
+    uint256 date;
+    string veterinarian;
+}
+
+mapping(uint256 => VaccineRecord[]) public petVaccines;
+mapping(uint256 => MedicalRecord[]) public petMedicalRecords;
+
+function addVaccine(uint256 petId, string memory name, uint256 date, string memory details) public onlyPetOwner(petId) {
+    petVaccines[petId].push(VaccineRecord(name, date, details));
+}
+
+function addMedicalRecord(uint256 petId, string memory description, uint256 date, string memory veterinarian) public onlyPetOwner(petId) {
+    petMedicalRecords[petId].push(MedicalRecord(description, date, veterinarian));
+}
+```
+
+> **Note:** All new features will be added to the main contract for simplicity and unified access. If the project grows, modularization can be considered.
+
+---
 
 ### Available Scripts
 

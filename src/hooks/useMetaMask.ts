@@ -1,22 +1,23 @@
-import { useState, useEffect } from 'react';
-import { ethers } from 'ethers';
 
-export const useMetaMask = () => {
-  const [account, setAccount] = useState(null);
-  const [isConnected, setIsConnected] = useState(false);
-  const [provider, setProvider] = useState(null);
-  const [signer, setSigner] = useState(null);
-  const [network, setNetwork] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+import { useState, useEffect } from 'react';
+import { ethers, BrowserProvider, Signer, Network } from 'ethers';
+
+export function useMetaMask() {
+  const [account, setAccount] = useState<string | null>(null);
+  const [isConnected, setIsConnected] = useState<boolean>(false);
+  const [provider, setProvider] = useState<BrowserProvider | null>(null);
+  const [signer, setSigner] = useState<Signer | null>(null);
+  const [network, setNetwork] = useState<Network | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   // Verificar se MetaMask está instalado
-  const isMetaMaskInstalled = () => {
+  const isMetaMaskInstalled = (): boolean => {
     return typeof window !== 'undefined' && typeof window.ethereum !== 'undefined';
   };
 
   // Conectar carteira
-  const connectWallet = async () => {
+  const connectWallet = async (): Promise<void> => {
     if (!isMetaMaskInstalled()) {
       setError('MetaMask não está instalado. Por favor, instale a extensão MetaMask.');
       return;
@@ -28,7 +29,7 @@ export const useMetaMask = () => {
 
       // Solicitar conexão
       await window.ethereum.request({ method: 'eth_requestAccounts' });
-      
+
       // Criar provider e signer
       const web3Provider = new ethers.BrowserProvider(window.ethereum);
       const web3Signer = await web3Provider.getSigner();
@@ -40,10 +41,10 @@ export const useMetaMask = () => {
       setAccount(address);
       setNetwork(networkInfo);
       setIsConnected(true);
-      
+
       // Salvar no localStorage
       localStorage.setItem('isWalletConnected', 'true');
-      
+
     } catch (err) {
       console.error('Erro ao conectar carteira:', err);
       setError('Erro ao conectar com MetaMask. Verifique se você aprovou a conexão.');
@@ -53,7 +54,7 @@ export const useMetaMask = () => {
   };
 
   // Desconectar carteira
-  const disconnectWallet = () => {
+  const disconnectWallet = (): void => {
     setAccount(null);
     setProvider(null);
     setSigner(null);
@@ -63,12 +64,12 @@ export const useMetaMask = () => {
   };
 
   // Verificar conexão existente
-  const checkConnection = async () => {
+  const checkConnection = async (): Promise<void> => {
     if (!isMetaMaskInstalled()) return;
 
     try {
       const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-      
+
       if (accounts.length > 0 && localStorage.getItem('isWalletConnected')) {
         const web3Provider = new ethers.BrowserProvider(window.ethereum);
         const web3Signer = await web3Provider.getSigner();
@@ -87,7 +88,7 @@ export const useMetaMask = () => {
   };
 
   // Mudar rede
-  const switchToNetwork = async (chainId) => {
+  const switchToNetwork = async (chainId: number): Promise<void> => {
     if (!isMetaMaskInstalled()) return;
 
     try {
@@ -101,34 +102,8 @@ export const useMetaMask = () => {
     }
   };
 
-  // Adicionar rede Polygon Mumbai (testnet)
-  const addPolygonMumbai = async () => {
-    if (!isMetaMaskInstalled()) return;
-
-    try {
-      await window.ethereum.request({
-        method: 'wallet_addEthereumChain',
-        params: [
-          {
-            chainId: '0x13881', // 80001 em hexadecimal
-            chainName: 'Polygon Mumbai',
-            nativeCurrency: {
-              name: 'MATIC',
-              symbol: 'MATIC',
-              decimals: 18,
-            },
-            rpcUrls: ['https://rpc-mumbai.maticvigil.com/'],
-            blockExplorerUrls: ['https://mumbai.polygonscan.com/'],
-          },
-        ],
-      });
-    } catch (err) {
-      console.error('Erro ao adicionar rede:', err);
-    }
-  };
-
-  // Formatear endereço
-  const formatAddress = (address) => {
+  // Formatar endereço
+  const formatAddress = (address: string | null): string => {
     if (!address) return '';
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
   };
@@ -139,24 +114,24 @@ export const useMetaMask = () => {
 
     if (isMetaMaskInstalled()) {
       // Ouvir mudanças de conta
-      window.ethereum.on('accountsChanged', (accounts) => {
+      const handleAccountsChanged = (accounts: string[]) => {
         if (accounts.length === 0) {
           disconnectWallet();
         } else {
           checkConnection();
         }
-      });
-
-      // Ouvir mudanças de rede
-      window.ethereum.on('chainChanged', () => {
+      };
+      const handleChainChanged = () => {
         checkConnection();
-      });
+      };
+      window.ethereum.on('accountsChanged', handleAccountsChanged);
+      window.ethereum.on('chainChanged', handleChainChanged);
 
       // Cleanup
       return () => {
         if (window.ethereum.removeListener) {
-          window.ethereum.removeListener('accountsChanged', checkConnection);
-          window.ethereum.removeListener('chainChanged', checkConnection);
+          window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
+          window.ethereum.removeListener('chainChanged', handleChainChanged);
         }
       };
     }
@@ -174,7 +149,6 @@ export const useMetaMask = () => {
     connectWallet,
     disconnectWallet,
     switchToNetwork,
-    addPolygonMumbai,
     formatAddress,
   };
-};
+}

@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { generatePetHash } from '../context/ipfsHashUtil';
+import { useState, ChangeEvent, FormEvent } from 'react';
+import { RegisterResult } from '../hooks/usePetIDContract';
 import { useMetaMask } from '../hooks/useMetaMask';
 import { usePetIDContract } from '../hooks/usePetIDContract';
 import './PetRegistration.css';
@@ -6,17 +8,18 @@ import './PetRegistration.css';
 const PetRegistration = () => {
   const { isConnected, signer } = useMetaMask();
   const { registerPet, isLoading, error, isContractReady } = usePetIDContract(signer);
-  
+
   const [formData, setFormData] = useState({
     name: '',
     species: '',
     breed: '',
     birthDate: '',
   });
-  
-  const [registrationResult, setRegistrationResult] = useState(null);
 
-  const handleInputChange = (e) => {
+  const [registrationResult, setRegistrationResult] = useState<RegisterResult | null>(null);
+  const { contractAddress } = usePetIDContract(signer);
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -24,25 +27,36 @@ const PetRegistration = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     if (!isConnected) {
       alert('Por favor, conecte sua carteira primeiro.');
       return;
     }
-    
+
     if (!isContractReady) {
       alert('Contrato ainda não foi implantado. Esta é uma versão de demonstração.');
       return;
     }
 
+    // Gera um hash único dos dados do pet (simulando um hash de conteúdo IPFS)
+    let ownerAddress = '';
+    if (signer && typeof (signer as any).getAddress === 'function') {
+      ownerAddress = await (signer as any).getAddress();
+    }
+    const petData = {
+      ...formData,
+      timestamp: Date.now().toString(),
+      owner: ownerAddress
+    };
+    const ipfsHash = await generatePetHash(petData);
+
     try {
-      const result = await registerPet(formData);
+      const result = await registerPet({ ...formData, ipfsHash });
       setRegistrationResult(result);
-      
+
       if (result.success) {
-        // Limpar formulário
         setFormData({
           name: '',
           species: '',
@@ -91,7 +105,18 @@ const PetRegistration = () => {
             <>
               <p>✅ Pet registrado com sucesso!</p>
               {registrationResult.petId && (
-                <p>🆔 ID do Pet: {registrationResult.petId}</p>
+                <>
+                  <p>🆔 <b>ID do Pet:</b> {registrationResult.petId}</p>
+                  <div style={{ background: '#f6f6f6', border: '1px solid #ccc', padding: 12, margin: '12px 0', borderRadius: 6 }}>
+                    <b>Importe este NFT na sua carteira:</b>
+                    <ul>
+                      <li><b>Endereço do contrato:</b> <code>{contractAddress}</code></li>
+                      <li><b>ID do NFT:</b> {registrationResult.petId}</li>
+                      <li><b>Rede:</b> Sepolia (ou a rede do deploy)</li>
+                    </ul>
+                    <span style={{ fontSize: 13, color: '#888' }}>No MetaMask, vá em <b>NFTs &gt; Importar NFT</b> e preencha os campos acima.</span>
+                  </div>
+                </>
               )}
               <p>📝 Hash da transação: {registrationResult.transactionHash}</p>
             </>
@@ -102,6 +127,7 @@ const PetRegistration = () => {
       )}
 
       <form onSubmit={handleSubmit} className="registration-form">
+        {/* A imagem será buscada automaticamente pela raça, futuramente */}
         <div className="form-group">
           <label htmlFor="name">Nome do Pet *</label>
           <input
