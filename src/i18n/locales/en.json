@@ -1,0 +1,183 @@
+{
+  "navbar": {
+    "connectWallet": "Connect Wallet",
+    "walletConnected": "Wallet Connected",
+    "metamaskNotFound": "MetaMask not found! Please install the MetaMask extension."
+  },
+  "hero": {
+    "title": "Digital Identity",
+    "titleHighlight": "for your Pets",
+    "subtitle": "PetID is a decentralized platform that creates unique and secure digital identities for pets using blockchain",
+    "features": {
+      "secure": {
+        "title": "Secure & Immutable",
+        "description": "Records protected by blockchain, impossible to falsify"
+      },
+      "decentralized": {
+        "title": "Decentralized",
+        "description": "No dependence on central authorities or governments"
+      },
+      "uniqueId": {
+        "title": "Unique ID",
+        "description": "Each pet receives a unique and verifiable digital identity"
+      }
+    },
+    "stats": {
+      "petsRegistered": "Pets Registered",
+      "activeUsers": "Active Users",
+      "petsFound": "Pets Found",
+      "uptime": "Uptime"
+    }
+  },
+  "features": {
+    "title": "Revolutionary Features",
+    "subtitle": "Discover how PetID is transforming the way we care for and protect our pets",
+    "items": {
+      "blockchainRegistry": {
+        "title": "Blockchain Registry",
+        "description": "Each pet receives an immutable record on the blockchain, ensuring authenticity and data security."
+      },
+      "qrCode": {
+        "title": "Unique QR Code",
+        "description": "Generate unique QR codes for your pets, facilitating quick identification in case of loss."
+      },
+      "globalNetwork": {
+        "title": "Global Network",
+        "description": "Access pet information anywhere in the world through the decentralized network."
+      },
+      "medicalHistory": {
+        "title": "Medical History",
+        "description": "Keep a complete and secure record of your pets' medical history and vaccinations."
+      },
+      "smartSearch": {
+        "title": "Smart Search",
+        "description": "Advanced search system to locate lost pets using AI and machine learning."
+      },
+      "nftPets": {
+        "title": "NFT Pets",
+        "description": "Transform your pet's identity into a unique and collectible NFT on the blockchain."
+      }
+    },
+    "cta": {
+      "title": "Ready to protect your pet?",
+      "subtitle": "Join thousands of pet owners who already trust blockchain technology to keep their animals safe and protected.",
+      "button": "Get Started - Free"
+    }
+  },
+  "petRegistration": {
+    "title": "Register Your Pet",
+    "subtitle": "Create a permanent digital identity for your pet on the blockchain",
+    "form": {
+      "petName": "Pet Name",
+      "petSpecies": "Species",
+      "petBreed": "Breed",
+      "petAge": "Age",
+      "petDescription": "Description",
+      "birthDate": "Birth Date",
+      "selectImage": "Select Image",
+      "registerButton": "Register Pet",
+      "registeringButton": "Registering...",
+      "selectSpecies": "Select species",
+      "species": {
+        "dog": "Dog",
+        "cat": "Cat",
+        "bird": "Bird",
+        "rabbit": "Rabbit",
+        "fish": "Fish",
+        "other": "Other"
+      },
+      "placeholders": {
+        "petName": "Ex: Buddy",
+        "petBreed": "Ex: Golden Retriever"
+      }
+    },
+    "warnings": {
+      "demoVersion": "This is a demo version. The contract has not been deployed yet."
+    },
+    "nftImport": {
+      "title": "Import this NFT to your wallet:",
+      "contractAddress": "Contract address:",
+      "nftId": "NFT ID:",
+      "network": "Network:",
+      "networkValue": "Sepolia (or deployment network)",
+      "instructions": "In MetaMask, go to NFTs > Import NFT and fill in the fields above."
+    },
+    "messages": {
+      "fillAllFields": "Please fill in all fields",
+      "selectImage": "Please select an image",
+      "connectWallet": "Please connect your wallet first",
+      "registrationSuccess": "Pet registered successfully!",
+      "registrationError": "Error registering pet:",
+      "transactionHash": "Transaction hash:"
+    },
+    "notConnected": {
+      "title": "Connect Your Wallet",
+      "description": "To register a pet, you need to connect your MetaMask wallet first."
+    }
+  },
+  "walletConnect": {
+    "title": "Connect Your Wallet",
+    "subtitle": "Connect your MetaMask wallet to start using PetID",
+    "connectButton": "Connect MetaMask",
+    "connectedButton": "Wallet Connected",
+    "connectingButton": "Connecting...",
+    "disconnectButton": "Disconnect",
+    "installButton": "Install MetaMask",
+    "account": "Account",
+    "network": "Network",
+    "balance": "Balance",
+    "about": {
+      "title": "About Pet ID",
+      "description": "Pet ID is a decentralized platform for pet data identification and management on the blockchain. Connect your wallet to register, transfer and manage digital pet identities."
+    },
+    "messages": {
+      "metamaskNotFound": "MetaMask not found! Please install the extension.",
+      "connectionError": "Error connecting wallet:"
+    }
+  },
+  "myPetNFTs": {
+    "title": "My Pet NFTs",
+    "noPets": "No pets registered yet",
+    "loading": "Loading...",
+    "petId": "Pet ID",
+    "owner": "Owner",
+    "viewOnIPFS": "View on IPFS",
+    "connectWallet": "Connect your wallet to view your NFTs.",
+    "errorFetching": "Error fetching user NFTs.",
+    "species": "Species",
+    "breed": "Breed",
+    "birthDate": "Birth Date",
+    "tokenUri": "TokenURI"
+  },
+  "footer": {
+    "description": "Creating secure digital identities for pets using blockchain technology.",
+    "rights": "All rights reserved.",
+    "sections": {
+      "product": "Product",
+      "company": "Company",
+      "support": "Support"
+    },
+    "links": {
+      "about": "About",
+      "features": "Features",
+      "support": "Support",
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "registerPet": "Register Pet",
+      "searchPet": "Search Pet",
+      "verifyId": "Verify ID",
+      "nftPets": "NFT Pets",
+      "api": "API",
+      "blog": "Blog",
+      "careers": "Careers",
+      "press": "Press",
+      "partnerships": "Partnerships",
+      "helpCenter": "Help Center",
+      "documentation": "Documentation",
+      "systemStatus": "System Status",
+      "contact": "Contact",
+      "community": "Community",
+      "cookies": "Cookies"
+    }
+  }
+}

@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 // @ts-ignore
 import logo from '../assets/logo/petID-logo.png'
-import { navItems } from '../constants'
+import LanguageSelector from './LanguageSelector'
 
 function Navbar() {
+  const { t } = useTranslation()
   const [isConnected, setIsConnected] = useState(false)
 
   const connectWallet = async () => {
@@ -16,7 +18,7 @@ function Navbar() {
         console.error('Erro ao conectar carteira:', error)
       }
     } else {
-      alert('MetaMask não encontrado! Instale a extensão MetaMask.')
+      alert(t('navbar.metamaskNotFound'))
     }
   }
 
@@ -28,12 +30,15 @@ function Navbar() {
             <img className="h-10 w-10 mr-2 rounded-xl shadow-md" src={logo} alt="Logo" />
             <span className="text-2xl font-bold tracking-tight text-black">PetID</span>
           </div>
-          <button
-            onClick={connectWallet}
-            className="ml-8 px-5 py-2 rounded-2xl bg-blue-400 hover:bg-accent text-black font-semibold shadow-lg transition-all duration-200"
-          >
-            {isConnected ? 'Carteira Conectada' : 'Conectar Carteira'}
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={connectWallet}
+              className="px-5 py-2 rounded-2xl bg-blue-400 hover:bg-accent text-black font-semibold shadow-lg transition-all duration-200"
+            >
+              {isConnected ? t('navbar.walletConnected') : t('navbar.connectWallet')}
+            </button>
+            <LanguageSelector />
+          </div>
         </div>
       </div>
     </nav>

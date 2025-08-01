@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next'
 import logoImg from '../assets/logo/petID-logo.png'
 
 function Footer() {
+  const { t } = useTranslation()
+
   return (
     <footer className="bg-gray-900 text-white w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -11,8 +14,7 @@ function Footer() {
               <img src={logoImg} alt="PetID Logo" className="h-8 w-auto" />
             </div>
             <p className="text-gray-400 mb-4">
-              A primeira plataforma descentralizada para identidade digital de pets,
-              garantindo segurança e transparência através da tecnologia blockchain.
+              {t('footer.description')}
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
@@ -40,37 +42,37 @@ function Footer() {
 
           {/* Product Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">Produto</h4>
+            <h4 className="text-lg font-semibold mb-4 text-white">{t('footer.sections.product')}</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Registrar Pet</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Buscar Pet</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Verificar ID</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">NFT Pets</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">API</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">{t('footer.links.registerPet')}</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">{t('footer.links.searchPet')}</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">{t('footer.links.verifyId')}</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">{t('footer.links.nftPets')}</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">{t('footer.links.api')}</a></li>
             </ul>
           </div>
 
           {/* Company Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">Empresa</h4>
+            <h4 className="text-lg font-semibold mb-4 text-white">{t('footer.sections.company')}</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Sobre Nós</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Carreiras</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Imprensa</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Parcerias</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">{t('footer.links.about')}</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">{t('footer.links.blog')}</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">{t('footer.links.careers')}</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">{t('footer.links.press')}</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">{t('footer.links.partnerships')}</a></li>
             </ul>
           </div>
 
           {/* Support Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">Suporte</h4>
+            <h4 className="text-lg font-semibold mb-4 text-white">{t('footer.sections.support')}</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Centro de Ajuda</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Documentação</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Status do Sistema</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contato</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Comunidade</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">{t('footer.links.helpCenter')}</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">{t('footer.links.documentation')}</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">{t('footer.links.systemStatus')}</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">{t('footer.links.contact')}</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">{t('footer.links.community')}</a></li>
             </ul>
           </div>
         </div>
@@ -79,17 +81,17 @@ function Footer() {
         <div className="border-t border-gray-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 text-sm mb-4 md:mb-0">
-              © 2025 PetID. Todos os direitos reservados.
+              © 2025 PetID. {t('footer.rights')}
             </div>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                Política de Privacidade
+                {t('footer.links.privacy')}
               </a>
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                Termos de Uso
+                {t('footer.links.terms')}
               </a>
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                Cookies
+                {t('footer.links.cookies')}
               </a>
             </div>
           </div>

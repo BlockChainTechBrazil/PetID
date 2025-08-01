@@ -1,0 +1,183 @@
+{
+  "navbar": {
+    "connectWallet": "Conectar Billetera",
+    "walletConnected": "Billetera Conectada",
+    "metamaskNotFound": "¡MetaMask no encontrado! Instala la extensión MetaMask."
+  },
+  "hero": {
+    "title": "Identidad Digital",
+    "titleHighlight": "para tus Mascotas",
+    "subtitle": "PetID es una plataforma descentralizada que crea identidades digitales únicas y seguras para mascotas usando blockchain",
+    "features": {
+      "secure": {
+        "title": "Seguro e Inmutable",
+        "description": "Registros protegidos por blockchain, imposibles de falsificar"
+      },
+      "decentralized": {
+        "title": "Descentralizado",
+        "description": "Sin dependencia de autoridades centrales o gobiernos"
+      },
+      "uniqueId": {
+        "title": "ID Único",
+        "description": "Cada mascota recibe una identidad digital única y verificable"
+      }
+    },
+    "stats": {
+      "petsRegistered": "Mascotas Registradas",
+      "activeUsers": "Usuarios Activos",
+      "petsFound": "Mascotas Encontradas",
+      "uptime": "Tiempo de Actividad"
+    }
+  },
+  "features": {
+    "title": "Características Revolucionarias",
+    "subtitle": "Descubre cómo PetID está transformando la forma en que cuidamos y protegemos a nuestras mascotas",
+    "items": {
+      "blockchainRegistry": {
+        "title": "Registro Blockchain",
+        "description": "Cada mascota recibe un registro inmutable en la blockchain, garantizando autenticidad y seguridad de los datos."
+      },
+      "qrCode": {
+        "title": "Código QR Único",
+        "description": "Genera códigos QR únicos para tus mascotas, facilitando la identificación rápida en caso de pérdida."
+      },
+      "globalNetwork": {
+        "title": "Red Global",
+        "description": "Accede a información de mascotas en cualquier lugar del mundo a través de la red descentralizada."
+      },
+      "medicalHistory": {
+        "title": "Historial Médico",
+        "description": "Mantén un registro completo y seguro del historial médico y vacunación de tus mascotas."
+      },
+      "smartSearch": {
+        "title": "Búsqueda Inteligente",
+        "description": "Sistema avanzado de búsqueda para localizar mascotas perdidas usando IA y machine learning."
+      },
+      "nftPets": {
+        "title": "NFT Mascotas",
+        "description": "Transforma la identidad de tu mascota en un NFT único y coleccionable en la blockchain."
+      }
+    },
+    "cta": {
+      "title": "¿Listo para proteger tu mascota?",
+      "subtitle": "Únete a miles de dueños de mascotas que ya confían en la tecnología blockchain para mantener a sus animales seguros y protegidos.",
+      "button": "Comenzar Ahora - Gratis"
+    }
+  },
+  "petRegistration": {
+    "title": "Registrar tu Mascota",
+    "subtitle": "Crea una identidad digital permanente para tu mascota en la blockchain",
+    "form": {
+      "petName": "Nombre de la Mascota",
+      "petSpecies": "Especie",
+      "petBreed": "Raza",
+      "petAge": "Edad",
+      "petDescription": "Descripción",
+      "birthDate": "Fecha de Nacimiento",
+      "selectImage": "Seleccionar Imagen",
+      "registerButton": "Registrar Mascota",
+      "registeringButton": "Registrando...",
+      "selectSpecies": "Seleccionar especie",
+      "species": {
+        "dog": "Perro",
+        "cat": "Gato",
+        "bird": "Pájaro",
+        "rabbit": "Conejo",
+        "fish": "Pez",
+        "other": "Otro"
+      },
+      "placeholders": {
+        "petName": "Ej: Buddy",
+        "petBreed": "Ej: Golden Retriever"
+      }
+    },
+    "warnings": {
+      "demoVersion": "Esta es una versión de demostración. El contrato aún no se ha desplegado."
+    },
+    "nftImport": {
+      "title": "Importa este NFT a tu billetera:",
+      "contractAddress": "Dirección del contrato:",
+      "nftId": "ID del NFT:",
+      "network": "Red:",
+      "networkValue": "Sepolia (o red de despliegue)",
+      "instructions": "En MetaMask, ve a NFTs > Importar NFT y completa los campos anteriores."
+    },
+    "messages": {
+      "fillAllFields": "Por favor, completa todos los campos",
+      "selectImage": "Por favor, selecciona una imagen",
+      "connectWallet": "Por favor, conecta tu billetera primero",
+      "registrationSuccess": "¡Mascota registrada con éxito!",
+      "registrationError": "Error al registrar mascota:",
+      "transactionHash": "Hash de transación:"
+    },
+    "notConnected": {
+      "title": "Conecta tu Billetera",
+      "description": "Para registrar una mascota, necesitas conectar tu billetera MetaMask primero."
+    }
+  },
+  "walletConnect": {
+    "title": "Conecta tu Billetera",
+    "subtitle": "Conecta tu billetera MetaMask para comenzar a usar PetID",
+    "connectButton": "Conectar MetaMask",
+    "connectedButton": "Billetera Conectada",
+    "connectingButton": "Conectando...",
+    "disconnectButton": "Desconectar",
+    "installButton": "Instalar MetaMask",
+    "account": "Cuenta",
+    "network": "Red",
+    "balance": "Saldo",
+    "about": {
+      "title": "Acerca de Pet ID",
+      "description": "Pet ID es una plataforma descentralizada para identificación y gestión de datos de mascotas en la blockchain. Conecta tu billetera para registrar, transferir y gestionar identidades digitales de mascotas."
+    },
+    "messages": {
+      "metamaskNotFound": "¡MetaMask no encontrado! Por favor, instala la extensión.",
+      "connectionError": "Error al conectar billetera:"
+    }
+  },
+  "myPetNFTs": {
+    "title": "Mis NFTs de Mascotas",
+    "noPets": "Aún no hay mascotas registradas",
+    "loading": "Cargando...",
+    "petId": "ID de Mascota",
+    "owner": "Propietario",
+    "viewOnIPFS": "Ver en IPFS",
+    "connectWallet": "Conecta tu billetera para ver tus NFTs.",
+    "errorFetching": "Error al obtener NFTs del usuario.",
+    "species": "Especie",
+    "breed": "Raza",
+    "birthDate": "Fecha de Nacimiento",
+    "tokenUri": "TokenURI"
+  },
+  "footer": {
+    "description": "Creando identidades digitales seguras para mascotas usando tecnología blockchain.",
+    "rights": "Todos los derechos reservados.",
+    "sections": {
+      "product": "Producto",
+      "company": "Empresa",
+      "support": "Soporte"
+    },
+    "links": {
+      "about": "Acerca de",
+      "features": "Características",
+      "support": "Soporte",
+      "privacy": "Privacidad",
+      "terms": "Términos",
+      "registerPet": "Registrar Mascota",
+      "searchPet": "Buscar Mascota",
+      "verifyId": "Verificar ID",
+      "nftPets": "NFT Mascotas",
+      "api": "API",
+      "blog": "Blog",
+      "careers": "Carreras",
+      "press": "Prensa",
+      "partnerships": "Asociaciones",
+      "helpCenter": "Centro de Ayuda",
+      "documentation": "Documentación",
+      "systemStatus": "Estado del Sistema",
+      "contact": "Contacto",
+      "community": "Comunidad",
+      "cookies": "Cookies"
+    }
+  }
+}

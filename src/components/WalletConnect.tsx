@@ -1,10 +1,12 @@
 
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useMetaMask } from '../hooks/useMetaMask';
 import './WalletConnect.css';
 import { MyPetNFTs } from './MyPetNFTs';
 
 const WalletConnect: FC = () => {
+  const { t } = useTranslation();
   const {
     account,
     isConnected,
@@ -21,15 +23,14 @@ const WalletConnect: FC = () => {
     return (
       <div className="wallet-connect">
         <div className="wallet-status error">
-          <h3>MetaMask não encontrado</h3>
-          <p>Por favor, instale a extensão MetaMask para usar o Pet ID.</p>
+          <h3>{t('walletConnect.messages.metamaskNotFound')}</h3>
           <a
             href="https://metamask.io/download/"
             target="_blank"
             rel="noopener noreferrer"
             className="install-button"
           >
-            Instalar MetaMask
+            Install MetaMask
           </a>
         </div>
       </div>
@@ -50,8 +51,8 @@ const WalletConnect: FC = () => {
 
       {!isConnected ? (
         <div className="connect-section">
-          <h3>Conecte sua carteira</h3>
-          <p>Conecte sua carteira MetaMask para começar a usar o Pet ID</p>
+          <h3>{t('walletConnect.title')}</h3>
+          <p>{t('walletConnect.subtitle')}</p>
           <button
             onClick={connectWallet}
             disabled={isLoading}
@@ -60,11 +61,11 @@ const WalletConnect: FC = () => {
             {isLoading ? (
               <span>
                 <span className="spinner"></span>
-                Conectando...
+                {t('walletConnect.connectingButton')}
               </span>
             ) : (
               <span>
-                🦊 Conectar MetaMask
+                🦊 {t('walletConnect.connectButton')}
               </span>
             )}
           </button>
@@ -72,15 +73,15 @@ const WalletConnect: FC = () => {
       ) : (
         <div className="connected-section">
           <div className="account-info">
-            <h3>✅ Carteira Conectada</h3>
+            <h3>✅ {t('walletConnect.connectedButton')}</h3>
             <div className="account-details">
               <div className="detail-item">
-                <label>Endereço:</label>
+                <label>{t('walletConnect.account')}:</label>
                 <span className="address">{account ? formatAddress(account) : ''}</span>
               </div>
               {network && typeof network === 'object' && 'name' in network && 'chainId' in network && (
                 <div className="detail-item">
-                  <label>Rede:</label>
+                  <label>{t('walletConnect.network')}:</label>
                   <span className="network">
                     {String((network as any).name)} (ID: {String((network as any).chainId)})
                   </span>
@@ -91,21 +92,19 @@ const WalletConnect: FC = () => {
 
           <div className="actions">
             <button onClick={disconnectWallet} className="disconnect-button">
-              Desconectar
+              {t('walletConnect.disconnectButton')}
             </button>
           </div>
         </div>
       )}
 
       <div className="info-section">
-        <h4>ℹ️ Sobre o Pet ID</h4>
+        <h4>ℹ️ {t('walletConnect.about.title')}</h4>
         <p>
-          O Pet ID é uma plataforma descentralizada para identificação e
-          gerenciamento de dados de pets na blockchain. Conecte sua carteira
-          para registrar, transferir e gerenciar identidades digitais de pets.
+          {t('walletConnect.about.description')}
         </p>
       </div>
-        <MyPetNFTs />
+      <MyPetNFTs />
     </div>
   );
 };

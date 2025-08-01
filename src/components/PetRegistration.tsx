@@ -1,11 +1,13 @@
 import { generatePetHash } from '../context/ipfsHashUtil';
 import { useState, ChangeEvent, FormEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 import { RegisterResult } from '../hooks/usePetIDContract';
 import { useMetaMask } from '../hooks/useMetaMask';
 import { usePetIDContract } from '../hooks/usePetIDContract';
 import './PetRegistration.css';
 
 const PetRegistration = () => {
+  const { t } = useTranslation();
   const { isConnected, signer } = useMetaMask();
   const { registerPet, isLoading, error, isContractReady } = usePetIDContract(signer);
 
@@ -31,12 +33,12 @@ const PetRegistration = () => {
     e.preventDefault();
 
     if (!isConnected) {
-      alert('Por favor, conecte sua carteira primeiro.');
+      alert(t('petRegistration.messages.connectWallet'));
       return;
     }
 
     if (!isContractReady) {
-      alert('Contrato ainda não foi implantado. Esta é uma versão de demonstração.');
+      alert(t('petRegistration.warnings.demoVersion'));
       return;
     }
 
@@ -73,8 +75,8 @@ const PetRegistration = () => {
     return (
       <div className="pet-registration">
         <div className="not-connected">
-          <h3>🔗 Conecte sua carteira</h3>
-          <p>Para registrar um pet, você precisa conectar sua carteira MetaMask primeiro.</p>
+          <h3>🔗 {t('petRegistration.notConnected.title')}</h3>
+          <p>{t('petRegistration.notConnected.description')}</p>
         </div>
       </div>
     );
@@ -83,13 +85,13 @@ const PetRegistration = () => {
   return (
     <div className="pet-registration">
       <div className="registration-header">
-        <h2>🐾 Registrar Novo Pet</h2>
-        <p>Crie uma identidade digital permanente para seu pet na blockchain</p>
+        <h2>🐾 {t('petRegistration.title')}</h2>
+        <p>{t('petRegistration.subtitle')}</p>
       </div>
 
       {!isContractReady && (
         <div className="warning-message">
-          <p>⚠️ Esta é uma versão de demonstração. O contrato ainda não foi implantado.</p>
+          <p>⚠️ {t('petRegistration.warnings.demoVersion')}</p>
         </div>
       )}
 
@@ -103,25 +105,25 @@ const PetRegistration = () => {
         <div className={`result-message ${registrationResult.success ? 'success' : 'error'}`}>
           {registrationResult.success ? (
             <>
-              <p>✅ Pet registrado com sucesso!</p>
+              <p>✅ {t('petRegistration.messages.registrationSuccess')}</p>
               {registrationResult.petId && (
                 <>
-                  <p>🆔 <b>ID do Pet:</b> {registrationResult.petId}</p>
+                  <p>🆔 <b>{t('myPetNFTs.petId')}:</b> {registrationResult.petId}</p>
                   <div style={{ background: '#f6f6f6', border: '1px solid #ccc', padding: 12, margin: '12px 0', borderRadius: 6 }}>
-                    <b>Importe este NFT na sua carteira:</b>
+                    <b>{t('petRegistration.nftImport.title')}</b>
                     <ul>
-                      <li><b>Endereço do contrato:</b> <code>{contractAddress}</code></li>
-                      <li><b>ID do NFT:</b> {registrationResult.petId}</li>
-                      <li><b>Rede:</b> Sepolia (ou a rede do deploy)</li>
+                      <li><b>{t('petRegistration.nftImport.contractAddress')}</b> <code>{contractAddress}</code></li>
+                      <li><b>{t('petRegistration.nftImport.nftId')}</b> {registrationResult.petId}</li>
+                      <li><b>{t('petRegistration.nftImport.network')}</b> {t('petRegistration.nftImport.networkValue')}</li>
                     </ul>
-                    <span style={{ fontSize: 13, color: '#888' }}>No MetaMask, vá em <b>NFTs &gt; Importar NFT</b> e preencha os campos acima.</span>
+                    <span style={{ fontSize: 13, color: '#888' }}>{t('petRegistration.nftImport.instructions')}</span>
                   </div>
                 </>
               )}
-              <p>📝 Hash da transação: {registrationResult.transactionHash}</p>
+              <p>📝 {t('petRegistration.messages.transactionHash')} {registrationResult.transactionHash}</p>
             </>
           ) : (
-            <p>❌ Erro: {registrationResult.error}</p>
+            <p>❌ {t('petRegistration.messages.registrationError')} {registrationResult.error}</p>
           )}
         </div>
       )}
@@ -129,7 +131,7 @@ const PetRegistration = () => {
       <form onSubmit={handleSubmit} className="registration-form">
         {/* A imagem será buscada automaticamente pela raça, futuramente */}
         <div className="form-group">
-          <label htmlFor="name">Nome do Pet *</label>
+          <label htmlFor="name">{t('petRegistration.form.petName')} *</label>
           <input
             type="text"
             id="name"
@@ -137,12 +139,12 @@ const PetRegistration = () => {
             value={formData.name}
             onChange={handleInputChange}
             required
-            placeholder="Ex: Buddy"
+            placeholder={t('petRegistration.form.placeholders.petName')}
           />
         </div>
 
         <div className="form-group">
-          <label htmlFor="species">Espécie *</label>
+          <label htmlFor="species">{t('petRegistration.form.petSpecies')} *</label>
           <select
             id="species"
             name="species"
@@ -150,30 +152,30 @@ const PetRegistration = () => {
             onChange={handleInputChange}
             required
           >
-            <option value="">Selecione a espécie</option>
-            <option value="Cão">Cão</option>
-            <option value="Gato">Gato</option>
-            <option value="Pássaro">Pássaro</option>
-            <option value="Coelho">Coelho</option>
-            <option value="Peixe">Peixe</option>
-            <option value="Outro">Outro</option>
+            <option value="">{t('petRegistration.form.selectSpecies')}</option>
+            <option value="dog">{t('petRegistration.form.species.dog')}</option>
+            <option value="cat">{t('petRegistration.form.species.cat')}</option>
+            <option value="bird">{t('petRegistration.form.species.bird')}</option>
+            <option value="rabbit">{t('petRegistration.form.species.rabbit')}</option>
+            <option value="fish">{t('petRegistration.form.species.fish')}</option>
+            <option value="other">{t('petRegistration.form.species.other')}</option>
           </select>
         </div>
 
         <div className="form-group">
-          <label htmlFor="breed">Raça</label>
+          <label htmlFor="breed">{t('petRegistration.form.petBreed')}</label>
           <input
             type="text"
             id="breed"
             name="breed"
             value={formData.breed}
             onChange={handleInputChange}
-            placeholder="Ex: Golden Retriever"
+            placeholder={t('petRegistration.form.placeholders.petBreed')}
           />
         </div>
 
         <div className="form-group">
-          <label htmlFor="birthDate">Data de Nascimento</label>
+          <label htmlFor="birthDate">{t('petRegistration.form.birthDate')}</label>
           <input
             type="date"
             id="birthDate"
@@ -191,11 +193,11 @@ const PetRegistration = () => {
           {isLoading ? (
             <>
               <span className="spinner"></span>
-              Registrando...
+              {t('petRegistration.form.registeringButton')}
             </>
           ) : (
             <>
-              🏷️ Registrar Pet
+              🏷️ {t('petRegistration.form.registerButton')}
             </>
           )}
         </button>
