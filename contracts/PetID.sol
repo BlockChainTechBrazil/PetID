@@ -13,10 +13,16 @@ contract PetID is ERC721, Ownable {
         uint256 birthDate;
         string ipfsHash; // Para armazenar dados adicionais no IPFS
         bool isRegistered;
+        struct Tutor;
+    }
+    struct Tutor{
+        string name;
+        string address;
+        string phone;
     }
 
-    mapping(uint256 => Pet) public pets;
-    mapping(address => uint256[]) public ownerToPets;
+    mapping(uint256 => Pet) private pets;
+    mapping(address => uint256[]) private ownerToPets;
     mapping(uint256 => string) private _tokenURIs;
 
     uint256 public nextPetId = 1;
